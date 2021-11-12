@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 2021_11_12_200936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "doctor_patients", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "patient_id"
+    t.index ["doctor_id"], name: "index_doctor_patients_on_doctor_id"
+    t.index ["patient_id"], name: "index_doctor_patients_on_patient_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "specialty"
@@ -23,13 +30,6 @@ ActiveRecord::Schema.define(version: 2021_11_12_200936) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hospital_id"], name: "index_doctors_on_hospital_id"
-  end
-
-  create_table "doctors_patients", force: :cascade do |t|
-    t.bigint "doctor_id"
-    t.bigint "patient_id"
-    t.index ["doctor_id"], name: "index_doctors_patients_on_doctor_id"
-    t.index ["patient_id"], name: "index_doctors_patients_on_patient_id"
   end
 
   create_table "hospitals", force: :cascade do |t|
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_200936) do
     t.integer "age"
   end
 
+  add_foreign_key "doctor_patients", "doctors"
+  add_foreign_key "doctor_patients", "patients"
   add_foreign_key "doctors", "hospitals"
-  add_foreign_key "doctors_patients", "doctors"
-  add_foreign_key "doctors_patients", "patients"
 end
