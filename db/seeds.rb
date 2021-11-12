@@ -1,2 +1,6 @@
 hospital = Hospital.create(name: "Grey Sloan Memorial Hospital")
-dr_bailey = hospital.doctors.create(name: "Miranda Bailey", specialty: "General Surgery", education: "Stanford University")
+doctor = hospital.doctors.create(name: "Miranda Bailey", specialty: "General Surgery", university: "Stanford University")
+patient1 = Patient.create!(name: 'Bob', age: 26)
+patient2 = Patient.create!(name: 'John', age: 27)
+DoctorPatient.create!(doctor_id: doctor.id, patient_id: patient1.id)
+DoctorPatient.create!(doctor_id: doctor.id, patient_id: patient2.id)
