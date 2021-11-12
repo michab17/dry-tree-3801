@@ -5,7 +5,7 @@ RSpec.describe 'Doctor Show Page' do
     hospital = Hospital.create!(name: "Good Hospital")
     doctor = hospital.doctors.create!(name: "Dr", specialty: "General Surgery", university: "Stanford University")
 
-    visit doctor_show_path
+    visit doctor_path
 
     expect(page).to have_content('Name: Dr')
     expect(page).to have_content('Specialty: General Surgery')
@@ -16,7 +16,7 @@ RSpec.describe 'Doctor Show Page' do
     hospital = Hospital.create!(name: "Good Hospital")
     doctor = hospital.doctors.create!(name: "Dr", specialty: "General Surgery", university: "Stanford University")
 
-    visit doctor_show_path
+    visit doctor_path
 
     expect(page).to have_content('Hosptial: Good Hospital')
   end
@@ -27,7 +27,7 @@ RSpec.describe 'Doctor Show Page' do
     patient1 = Patient.create!(name: 'Bob', age: 26)
     patient1 = Patient.create!(name: 'John', age: 27)
 
-    visit doctor_show_path
+    visit doctor_path
 
     expect(page).to have_content('Patients:')
     expect(page).to have_content('Bob')
