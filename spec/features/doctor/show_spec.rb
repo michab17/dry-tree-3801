@@ -18,14 +18,16 @@ RSpec.describe 'Doctor Show Page' do
 
     visit doctor_path(doctor.id)
 
-    expect(page).to have_content('Hosptial: Good Hospital')
+    expect(page).to have_content('Hospital: Good Hospital')
   end
 
   it 'displays all the patients the doctor has' do
     hospital = Hospital.create!(name: "Good Hospital")
     doctor = hospital.doctors.create!(name: "Dr", specialty: "General Surgery", university: "Stanford University")
     patient1 = Patient.create!(name: 'Bob', age: 26)
-    patient1 = Patient.create!(name: 'John', age: 27)
+    patient2 = Patient.create!(name: 'John', age: 27)
+    DoctorPatient.create!(doctor_id: doctor.id, patient_id: patient1.id)
+    DoctorPatient.create!(doctor_id: doctor.id, patient_id: patient2.id)
 
     visit doctor_path(doctor.id)
 
