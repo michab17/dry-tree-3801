@@ -27,7 +27,7 @@ RSpec.describe 'Hospital Show Page' do
     doctor2 = hospital.doctors.create!(name: "Doctor", specialty: "General Surgery", university: "University of Pittsburgh")
 
     visit hospital_path(hospital.id)
-    save_and_open_page
+
     expect(page).to have_content('Universities:')
     expect(page).to have_content('Stanford University')
     expect(page).to have_content('University of Pittsburgh').once
